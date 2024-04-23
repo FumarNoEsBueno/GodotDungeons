@@ -9,6 +9,7 @@ public partial class Node2D : Godot.Node2D
 	private int tamanoTotal;
 	private int tamanoMinimo = 50;
 	private int tamanoMaximo = 70;
+	private int dimension = 50;
 
 	private void generarMatrizGuia(){
 		this.matrizGuia[20,20] = new Coordenada(20, 20, "i");
@@ -17,7 +18,7 @@ public partial class Node2D : Godot.Node2D
 		listaSimbolos.Add(this.matrizGuia[20, 20]);
 		this.generacionIterativa(listaSimbolos);
 		this.anadirSalida();
-		//this.imprimirMazmorra();
+		imprimirMazmorra();
 	}
 
 	private void imprimirMazmorra(){
@@ -63,10 +64,6 @@ public partial class Node2D : Godot.Node2D
 		}
 		Random rnd = new Random();
 		int randomNumber = rnd.Next(posiblesSalidas.Count);
-		GD.Print("Numero random");
-		GD.Print(randomNumber);
-		GD.Print("Ultimo numero");
-		GD.Print(posiblesSalidas.Count);
 		posiblesSalidas[randomNumber].setValue(posiblesSalidas[randomNumber] + "Q");
 	}
 
@@ -89,148 +86,148 @@ public partial class Node2D : Godot.Node2D
 			for(int j = 0; j < 50; j++){
 				if(this.matrizGuia[j,i] == null) continue;
 				if(this.matrizGuia[j,i].getValue().Contains("I")){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/Inicio.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/Inicio.png");
+					this.AddChild(sprite);
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("Q")){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/SALIDA.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/SALIDA.png");
+					this.AddChild(sprite);
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CO") && 
 						this.matrizGuia[j,i].getValue().Contains("CS") &&
 						this.matrizGuia[j,i].getValue().Contains("CE") &&
 						this.matrizGuia[j,i].getValue().Contains("CN")
 				  ){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/X.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/X.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CO") && 
 						this.matrizGuia[j,i].getValue().Contains("CS") &&
 						this.matrizGuia[j,i].getValue().Contains("CN")
 				  ){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/TE.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/TE.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CO") && 
 						this.matrizGuia[j,i].getValue().Contains("CS") &&
 						this.matrizGuia[j,i].getValue().Contains("CE")
 				  ){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/TN.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/TN.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CO") && 
 						this.matrizGuia[j,i].getValue().Contains("CE") &&
 						this.matrizGuia[j,i].getValue().Contains("CN")
 				  ){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/TS.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/TS.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CN") && 
 						this.matrizGuia[j,i].getValue().Contains("CE") &&
 						this.matrizGuia[j,i].getValue().Contains("CS")
 				  ){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/TO.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/TO.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CO") && 
 						this.matrizGuia[j,i].getValue().Contains("CS")
 				  ){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/CSCO.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/CSCO.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CE") && 
 						this.matrizGuia[j,i].getValue().Contains("CS")
 				  ){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/CSCE.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/CSCE.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CO") && 
 						this.matrizGuia[j,i].getValue().Contains("CN")
 				  ){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/CNCO.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/CNCO.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CE") && 
 						this.matrizGuia[j,i].getValue().Contains("CN")
 				  ){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/CNCE.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/CNCE.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CN") && 
 						this.matrizGuia[j,i].getValue().Contains("CS")
 				  ){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/CNCS.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/CNCS.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CO") && 
 						this.matrizGuia[j,i].getValue().Contains("CE")
 				  ){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/CECO.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/CECO.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CO")){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/EE.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/EE.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CS")){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/NE.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/NE.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CE")){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/OE.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/OE.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 				if(this.matrizGuia[j,i].getValue().Contains("CN")){
-					Sprite2D wea = new Sprite2D();
-					wea.Position = new Vector2(j * 16, i * 16);
-					wea.Texture = (Texture2D)GD.Load("res://Images/SE.png");
-					this.AddChild(wea);
+					Sprite2D sprite = new Sprite2D();
+					sprite.Position = new Vector2(j * 16, i * 16);
+					sprite.Texture = (Texture2D)GD.Load("res://Images/SE.png");
+					this.AddChild(sprite);
 					continue;
 				} 
 			}
@@ -370,207 +367,180 @@ public partial class Node2D : Godot.Node2D
 		return listaSimbolos;
 	}
 
-	private List<Coordenada> processP(Coordenada simbolo){
-		List<Coordenada> listaSimbolos = new List<Coordenada>();
-		Random rnd = new Random();
-		int randomNumber = rnd.Next(10);
-		//int randomNumber = 2;
-		simbolo.setValue(simbolo.getValue().Trim('p'));
-		switch (randomNumber){
-			case 0:
-				if(simbolo.getX() - 1 < 0){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX() - 1, simbolo.getY()] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CO");
-					listaSimbolos.Add(new Coordenada(simbolo.getX() - 1, simbolo.getY(), "pCE"));
-					this.matrizGuia[simbolo.getX() - 1, simbolo.getY()] = listaSimbolos[0];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				break;
-			case 1:
-				if(simbolo.getX() + 1 >= 50){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX() + 1, simbolo.getY()] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CE");
-					listaSimbolos.Add(new Coordenada(simbolo.getX() + 1, simbolo.getY(), "pCO"));
-					this.matrizGuia[simbolo.getX() + 1, simbolo.getY()] = listaSimbolos[0];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				break;
-			case 2:
-				if(simbolo.getY() < 0){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX(), simbolo.getY() - 1] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CN");
-					listaSimbolos.Add(new Coordenada(simbolo.getX(), simbolo.getY() - 1, "pCS"));
-					this.matrizGuia[simbolo.getX(), simbolo.getY() - 1] = listaSimbolos[0];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				break;
-			case 3:
-				if(simbolo.getY() >= 50){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX(), simbolo.getY() + 1] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CS");
-					listaSimbolos.Add(new Coordenada(simbolo.getX(), simbolo.getY() + 1, "pCN"));
-					this.matrizGuia[simbolo.getX(), simbolo.getY() + 1] = listaSimbolos[0];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				break;
-			case 4:
-				if(simbolo.getY() < 0){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX(), simbolo.getY() - 1] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CN");
-					listaSimbolos.Add(new Coordenada(simbolo.getX(), simbolo.getY() - 1, "pCS"));
-					this.matrizGuia[simbolo.getX(), simbolo.getY() - 1] = listaSimbolos[listaSimbolos.Count - 1];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				if(simbolo.getY() >= 50){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX(), simbolo.getY() + 1] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CS");
-					listaSimbolos.Add(new Coordenada(simbolo.getX(), simbolo.getY() + 1, "pCN"));
-					this.matrizGuia[simbolo.getX(), simbolo.getY() + 1] = listaSimbolos[listaSimbolos.Count - 1];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				break;
-			case 5:
-				if(simbolo.getX() - 1 < 0){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX() - 1, simbolo.getY()] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CO");
-					listaSimbolos.Add(new Coordenada(simbolo.getX() - 1, simbolo.getY(), "pCE"));
-					this.matrizGuia[simbolo.getX() - 1, simbolo.getY()] = listaSimbolos[listaSimbolos.Count - 1];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				if(simbolo.getX() + 1 >= 50){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX() + 1, simbolo.getY()] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CE");
-					listaSimbolos.Add(new Coordenada(simbolo.getX() + 1, simbolo.getY(), "pCO"));
-					this.matrizGuia[simbolo.getX() + 1, simbolo.getY()] = listaSimbolos[listaSimbolos.Count - 1];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				break;
-			case 6:
-				if(simbolo.getX() - 1 < 0){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX() - 1, simbolo.getY()] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CO");
-					listaSimbolos.Add(new Coordenada(simbolo.getX() - 1, simbolo.getY(), "pCE"));
-					this.matrizGuia[simbolo.getX() - 1, simbolo.getY()] = listaSimbolos[listaSimbolos.Count - 1];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				if(simbolo.getY() - 1 < 0){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX(), simbolo.getY() - 1] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CN");
-					listaSimbolos.Add(new Coordenada(simbolo.getX(), simbolo.getY() - 1, "pCS"));
-					this.matrizGuia[simbolo.getX(), simbolo.getY() - 1] = listaSimbolos[listaSimbolos.Count - 1];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				break;
-			case 7:
-				if(simbolo.getX() - 1 < 0){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX() - 1, simbolo.getY()] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CO");
-					listaSimbolos.Add(new Coordenada(simbolo.getX() - 1, simbolo.getY(), "pCE"));
-					this.matrizGuia[simbolo.getX() - 1, simbolo.getY()] = listaSimbolos[listaSimbolos.Count - 1];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				if(simbolo.getY() + 1 >= 50){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX(), simbolo.getY() + 1] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CS");
-					listaSimbolos.Add(new Coordenada(simbolo.getX(), simbolo.getY() + 1, "pCN"));
-					this.matrizGuia[simbolo.getX(), simbolo.getY() + 1] = listaSimbolos[listaSimbolos.Count - 1];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				break;
-			case 8:
-				if(simbolo.getX() + 1 >= 50){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX() + 1, simbolo.getY()] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CE");
-					listaSimbolos.Add(new Coordenada(simbolo.getX() + 1, simbolo.getY(), "pCO"));
-					this.matrizGuia[simbolo.getX() + 1, simbolo.getY()] = listaSimbolos[listaSimbolos.Count - 1];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				if(simbolo.getY() - 1 < 0){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX(), simbolo.getY() - 1] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CN");
-					listaSimbolos.Add(new Coordenada(simbolo.getX(), simbolo.getY() - 1, "pCS"));
-					this.matrizGuia[simbolo.getX(), simbolo.getY() - 1] = listaSimbolos[listaSimbolos.Count - 1];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				break;
-			case 9:
-				if(simbolo.getX() + 1 >= 50){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX() + 1, simbolo.getY()] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CE");
-					listaSimbolos.Add(new Coordenada(simbolo.getX() + 1, simbolo.getY(), "pCO"));
-					this.matrizGuia[simbolo.getX() + 1, simbolo.getY()] = listaSimbolos[listaSimbolos.Count - 1];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				if(simbolo.getY() + 1 >= 50){
-					simbolo.setValue(simbolo.getValue() + "F");
-					break;
-				}
-				if(this.matrizGuia[simbolo.getX(), simbolo.getY() + 1] == null){
-					simbolo.setValue(simbolo.getValue().Trim('p') + "CS");
-					listaSimbolos.Add(new Coordenada(simbolo.getX(), simbolo.getY() + 1, "pCN"));
-					this.matrizGuia[simbolo.getX(), simbolo.getY() + 1] = listaSimbolos[listaSimbolos.Count - 1];
-				}else simbolo.setValue(simbolo.getValue() + "F");
-				break;
-		}
-		return listaSimbolos;
-	}
+    private Coordenada crecer(Coordenada simbolo, string direccion){
+        switch(direccion){
+            case "E":
+                if(simbolo.getX() + 1 >= this.dimension){
+                    simbolo.setValue(simbolo.getValue() + "F");
+                    break;
+                }
+                if(this.matrizGuia[simbolo.getX() + 1, simbolo.getY()] == null){
+                    simbolo.setValue(simbolo.getValue().Trim('p') + "CE");
+                    Coordenada simboloNuevo = new Coordenada(simbolo.getX() + 1, simbolo.getY(), "pCO");
+                    this.matrizGuia[simbolo.getX() + 1, simbolo.getY()] = simboloNuevo ;
+                    return simboloNuevo;
+                }else{
+                    this.matrizGuia[simbolo.getX() + 1, simbolo.getY()].setValue(this.matrizGuia[simbolo.getX() + 1, simbolo.getY()].getValue() + "CO");
+                    simbolo.setValue(simbolo.getValue() + "CEF");
+                }
+                break;
+            case "O":
+                if(simbolo.getX() - 1 < 0){
+                    simbolo.setValue(simbolo.getValue() + "F");
+                }
+                if(this.matrizGuia[simbolo.getX() - 1, simbolo.getY()] == null){
+                    simbolo.setValue(simbolo.getValue().Trim('p') + "CO");
+                    Coordenada simboloNuevo = new Coordenada(simbolo.getX() - 1, simbolo.getY(), "pCE");
+                    this.matrizGuia[simbolo.getX() - 1, simbolo.getY()] = simboloNuevo;
+                    return simboloNuevo;
+                }else simbolo.setValue(simbolo.getValue() + "F");
+                break;
+            case "N":
+                if(simbolo.getY() < 0){
+                    simbolo.setValue(simbolo.getValue() + "F");
+                    break;
+                }
+                if(this.matrizGuia[simbolo.getX(), simbolo.getY() - 1] == null){
+                    simbolo.setValue(simbolo.getValue().Trim('p') + "CN");
+                    Coordenada simboloNuevo = new Coordenada(simbolo.getX(), simbolo.getY() - 1, "pCS");
+                    this.matrizGuia[simbolo.getX(), simbolo.getY() - 1] = simboloNuevo;
+                    return simboloNuevo;
+                }else simbolo.setValue(simbolo.getValue() + "F");
+                break;
+            case "S":
+                if(simbolo.getY() >= this.dimension){
+                    simbolo.setValue(simbolo.getValue() + "F");
+                    break;
+                }
+                if(this.matrizGuia[simbolo.getX(), simbolo.getY() + 1] == null){
+                    simbolo.setValue(simbolo.getValue().Trim('p') + "CS");
+                    Coordenada simboloNuevo = new Coordenada(simbolo.getX(), simbolo.getY() + 1, "pCN");
+                    this.matrizGuia[simbolo.getX(), simbolo.getY() + 1] = simboloNuevo;
+                    return simboloNuevo;
+                }else simbolo.setValue(simbolo.getValue() + "F");
+                break;
+            default:
+                return null;
+        }
+        return null;
+    }
 
-	public override void _Ready()
-	{
-		this.generarMatrizGuia();
-		this.generarMatrizReal();
-	}
+    private List<Coordenada> processP(Coordenada simbolo){
+        List<Coordenada> listaSimbolos = new List<Coordenada>();
+        Random rnd = new Random();
+        int randomNumber = rnd.Next(12);
+        //int randomNumber = 2;
+        Coordenada nuevoSimbolo;
+        simbolo.setValue(simbolo.getValue().Trim('p'));
+        switch (randomNumber){
+            case 0:
+                nuevoSimbolo = this.crecer(simbolo, "E");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                break;
+            case 1:
+                nuevoSimbolo = this.crecer(simbolo, "O");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                break;
+            case 2:
+                nuevoSimbolo = this.crecer(simbolo, "N");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                break;
+            case 3:
+                nuevoSimbolo = this.crecer(simbolo, "S");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                break;
+            case 4:
+                nuevoSimbolo = this.crecer(simbolo, "S");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                nuevoSimbolo = this.crecer(simbolo, "N");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                break;
+            case 5:
+                nuevoSimbolo = this.crecer(simbolo, "O");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                nuevoSimbolo = this.crecer(simbolo, "E");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                break;
+            case 6:
+                nuevoSimbolo = this.crecer(simbolo, "O");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                nuevoSimbolo = this.crecer(simbolo, "N");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                break;
+            case 7:
+                nuevoSimbolo = this.crecer(simbolo, "O");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                nuevoSimbolo = this.crecer(simbolo, "S");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                break;
+            case 8:
+                nuevoSimbolo = this.crecer(simbolo, "E");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                nuevoSimbolo = this.crecer(simbolo, "N");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                break;
+            case 9:
+                nuevoSimbolo = this.crecer(simbolo, "E");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                nuevoSimbolo = this.crecer(simbolo, "O");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                nuevoSimbolo = this.crecer(simbolo, "N");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                break;
+            case 10:
+                nuevoSimbolo = this.crecer(simbolo, "E");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                nuevoSimbolo = this.crecer(simbolo, "O");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                nuevoSimbolo = this.crecer(simbolo, "S");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                break;
+            case 11:
+                nuevoSimbolo = this.crecer(simbolo, "N");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                nuevoSimbolo = this.crecer(simbolo, "S");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                nuevoSimbolo = this.crecer(simbolo, "O");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                break;
+            case 12:
+                nuevoSimbolo = this.crecer(simbolo, "N");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                nuevoSimbolo = this.crecer(simbolo, "S");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                nuevoSimbolo = this.crecer(simbolo, "E");
+                if(nuevoSimbolo != null)listaSimbolos.Add(nuevoSimbolo); 
+                break;
+        }
+        return listaSimbolos;
+    }
 
-	public override void _Process(double delta)
-	{
-	}
+    public override void _Ready()
+    {
+        this.generarMatrizGuia();
+        this.generarMatrizReal();
+    }
 
-	public override void _Input(InputEvent @event)
-	{
-		if (@event is InputEventKey keyEvent && keyEvent.Pressed){
-			if (keyEvent.Keycode == Key.T && keyEvent.Pressed){
-				for(int i = 0; i < 50; i++){
-					for(int j = 0; j < 50; j++){
-						if(this.matrizGuia[i,j] != null) this.matrizGuia[i,j] = null;
-					}
-				}
-				foreach(Sprite2D node in this.GetChildren()){
-					this.RemoveChild(node);
-					node.QueueFree();
-				}
-				this.generarMatrizGuia();
-				this.generarMatrizReal();
-			}
-		}
-	}
+    public override void _Process(double delta)
+    {
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event is InputEventKey keyEvent && keyEvent.Pressed){
+            if (keyEvent.Keycode == Key.T && keyEvent.Pressed){
+                for(int i = 0; i < 50; i++){
+                    for(int j = 0; j < 50; j++){
+                        if(this.matrizGuia[i,j] != null) this.matrizGuia[i,j] = null;
+                    }
+                }
+                foreach(Sprite2D node in this.GetChildren()){
+                    this.RemoveChild(node);
+                    node.QueueFree();
+                }
+                this.generarMatrizGuia();
+                this.generarMatrizReal();
+            }
+        }
+    }
 }
