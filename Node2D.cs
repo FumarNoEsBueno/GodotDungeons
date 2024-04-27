@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class Node2D : Godot.Node2D
 {
 	private Coordenada[,] matrizGuia = new Coordenada[50, 50];
-	private int[,] matrizReal = new int[1000, 1000];
+	private Casilla[,] matrizReal = new Casilla[1000, 1000];
 	private int tamanoTotal;
 	private int tamanoMinimo = 50;
 	private int tamanoMaximo = 70;
@@ -34,18 +34,21 @@ public partial class Node2D : Godot.Node2D
 		this.anadirSalida();
 		//imprimirMazmorra();
 	}
+    private void generarMatrizReal(){
+
+    }
 
 	private void imprimirMazmorra(){
-		String wea = "";
+		String cadena = "";
 		for(int i = 0; i < dimension; i++){
 			for(int j = 0; j < dimension; j++){
-				if(matrizGuia[j, i] != null)wea = wea + " " + matrizGuia[j,i].getValue();
+				if(matrizGuia[j, i] != null)cadena = cadena + " " + matrizGuia[j,i].getValue();
 				else
-					wea = wea + " X";
+					cadena = cadena + " X";
 			}
-			wea = wea + " \n";
+			cadena = cadena + " \n";
 		}
-		GD.Print(wea);
+		GD.Print(cadena);
 		GD.Print("Tamaño total: " + this.tamanoTotal);
 	}
 
@@ -61,7 +64,7 @@ public partial class Node2D : Godot.Node2D
 		listaSimbolos.ForEach(delegate (Coordenada simbolo){
 				newListaSimbolos.AddRange(this.procesarSimbolos(simbolo));
 				});
-        this.posiblesSalidas = 0;
+		this.posiblesSalidas = 0;
 		this.generacionIterativa(newListaSimbolos);
 	}
 
@@ -95,7 +98,7 @@ public partial class Node2D : Godot.Node2D
 		return listaSimbolos;
 	}
 
-	private void generarMatrizReal(){
+	private void generarMinimapa(){
 		for(int i = 0; i < dimension; i++){
 			for(int j = 0; j < dimension; j++){
 				if(this.matrizGuia[j,i] == null) continue;
@@ -390,7 +393,7 @@ public partial class Node2D : Godot.Node2D
 			case este:
 				if(simbolo.getX() + 1 >= dimension){
 					simbolo.setValue(simbolo.getValue() + final.ToString());
-                    this.posiblesSalidas++;
+					this.posiblesSalidas++;
 				}else if(this.matrizGuia[simbolo.getX() + 1, simbolo.getY()] == null){
 					simbolo.setValue(simbolo.getValue().Trim(pasillo) + este.ToString());
 					Coordenada simboloNuevo = new Coordenada(simbolo.getX() + 1, simbolo.getY(), pasillo.ToString() + oeste.ToString());
@@ -401,13 +404,13 @@ public partial class Node2D : Godot.Node2D
 					simbolo.setValue(simbolo.getValue() + este);
 				}else{
 					simbolo.setValue(simbolo.getValue() + final.ToString());
-                    this.posiblesSalidas++;
-                }
+					this.posiblesSalidas++;
+				}
 				break;
 			case oeste:
 				if(simbolo.getX() - 1 < 0){
 					simbolo.setValue(simbolo.getValue() + final.ToString());
-                    this.posiblesSalidas++;
+					this.posiblesSalidas++;
 				}else if(this.matrizGuia[simbolo.getX() - 1, simbolo.getY()] == null){
 					simbolo.setValue(simbolo.getValue().Trim(pasillo) + oeste.ToString());
 					Coordenada simboloNuevo = new Coordenada(simbolo.getX() - 1, simbolo.getY(), pasillo.ToString() + este.ToString());
@@ -416,15 +419,15 @@ public partial class Node2D : Godot.Node2D
 				}else if(provabilidadDeSuperposicion > randomNumber && this.posiblesSalidas > 0){
 					this.matrizGuia[simbolo.getX() - 1, simbolo.getY()].setValue(this.matrizGuia[simbolo.getX() - 1, simbolo.getY()].getValue() + este);
 					simbolo.setValue(simbolo.getValue() + oeste);
-                }else{
-                    simbolo.setValue(simbolo.getValue() + final.ToString());
-                    this.posiblesSalidas++;
-                }
+				}else{
+					simbolo.setValue(simbolo.getValue() + final.ToString());
+					this.posiblesSalidas++;
+				}
 				break;
 			case norte:
 				if(simbolo.getY() < 0){
 					simbolo.setValue(simbolo.getValue() + final.ToString());
-                    this.posiblesSalidas++;
+					this.posiblesSalidas++;
 				}else if(this.matrizGuia[simbolo.getX(), simbolo.getY() - 1] == null){
 					simbolo.setValue(simbolo.getValue().Trim(pasillo) + norte.ToString());
 					Coordenada simboloNuevo = new Coordenada(simbolo.getX(), simbolo.getY() - 1, pasillo.ToString() + sur.ToString());
@@ -433,15 +436,15 @@ public partial class Node2D : Godot.Node2D
 				}else if(provabilidadDeSuperposicion > randomNumber && this.posiblesSalidas > 0){
 					this.matrizGuia[simbolo.getX(), simbolo.getY() - 1].setValue(this.matrizGuia[simbolo.getX(), simbolo.getY() - 1].getValue() + sur);
 					simbolo.setValue(simbolo.getValue() + norte);
-                }else{
-                    simbolo.setValue(simbolo.getValue() + final.ToString());
-                    this.posiblesSalidas++;
-                }
+				}else{
+					simbolo.setValue(simbolo.getValue() + final.ToString());
+					this.posiblesSalidas++;
+				}
 				break;
 			case sur:
 				if(simbolo.getY() >= dimension){
 					simbolo.setValue(simbolo.getValue() + final.ToString());
-                    this.posiblesSalidas++;
+					this.posiblesSalidas++;
 				}else if(this.matrizGuia[simbolo.getX(), simbolo.getY() + 1] == null){
 					simbolo.setValue(simbolo.getValue().Trim(pasillo) + sur.ToString());
 					Coordenada simboloNuevo = new Coordenada(simbolo.getX(), simbolo.getY() + 1, pasillo.ToString() + norte.ToString());
@@ -450,10 +453,10 @@ public partial class Node2D : Godot.Node2D
 				}else if(provabilidadDeSuperposicion > randomNumber && this.posiblesSalidas > 0){
 					this.matrizGuia[simbolo.getX(), simbolo.getY() + 1].setValue(this.matrizGuia[simbolo.getX(), simbolo.getY() + 1].getValue() + norte);
 					simbolo.setValue(simbolo.getValue() + sur);
-                }else{
-                    simbolo.setValue(simbolo.getValue() + final.ToString());
-                    this.posiblesSalidas++;
-                }
+				}else{
+					simbolo.setValue(simbolo.getValue() + final.ToString());
+					this.posiblesSalidas++;
+				}
 				break;
 			default:
 				return null;
@@ -549,11 +552,24 @@ public partial class Node2D : Godot.Node2D
 		}
 		return listaSimbolos;
 	}
+	
+	private void RemoveAndFreeChildren(Node node) {
+		foreach (Node child in node.GetChildren()) {
+			if (child.GetChildCount() > 0) {
+				RemoveAndFreeChildren(child);
+			}
+
+			child.GetParent().RemoveChild(child);
+			child.QueueFree();
+		}
+	}
 
 	public override void _Ready()
 	{
+		this.AddChild(new paredTesteo(16,16));
 		this.generarMatrizGuia();
 		this.generarMatrizReal();
+		this.generarMinimapa();
 	}
 
 	public override void _Process(double delta)
@@ -569,12 +585,10 @@ public partial class Node2D : Godot.Node2D
 						if(this.matrizGuia[i,j] != null) this.matrizGuia[i,j] = null;
 					}
 				}
-				foreach(Sprite2D node in this.GetChildren()){
-					this.RemoveChild(node);
-					node.QueueFree();
-				}
+				this.RemoveAndFreeChildren(this);
 				this.generarMatrizGuia();
-				this.generarMatrizReal();
+                this.generarMatrizReal();
+                this.generarMinimapa();
 			}
 		}
 	}
