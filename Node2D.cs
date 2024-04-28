@@ -34,9 +34,134 @@ public partial class Node2D : Godot.Node2D
 		this.anadirSalida();
 		//imprimirMazmorra();
 	}
-    private void generarMatrizReal(){
-
-    }
+	private void generarMatrizReal(){
+		for(int i = 0; i < dimension; i++){
+			for(int j = 0; j < dimension; j++){
+				if(this.matrizGuia[j,i] == null) continue;
+				if(this.matrizGuia[j,i].getValue().Contains(inicio)){
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(salida)){
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(oeste) && 
+						this.matrizGuia[j,i].getValue().Contains(sur) &&
+						this.matrizGuia[j,i].getValue().Contains(este) &&
+						this.matrizGuia[j,i].getValue().Contains(norte)
+				  ){
+					this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + 1));
+					this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + 1));
+					this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + 16));
+					this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + 16));
+					continue;
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(oeste) && 
+						this.matrizGuia[j,i].getValue().Contains(sur) &&
+						this.matrizGuia[j,i].getValue().Contains(norte)
+				  ){
+					this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + 1));
+					this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + 16));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + w));
+					continue;
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(oeste) && 
+						this.matrizGuia[j,i].getValue().Contains(sur) &&
+						this.matrizGuia[j,i].getValue().Contains(este)
+				  ){
+					this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + 16));
+					this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + 16));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + w,(16 * i) + 1));
+					continue;
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(oeste) && 
+						this.matrizGuia[j,i].getValue().Contains(este) &&
+						this.matrizGuia[j,i].getValue().Contains(norte)
+				  ){
+					this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + 1));
+					this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + 1));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + w,(16 * i) + 16));
+					continue;
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(norte) && 
+						this.matrizGuia[j,i].getValue().Contains(este) &&
+						this.matrizGuia[j,i].getValue().Contains(sur)
+				  ){
+					this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + 1));
+					this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + 16));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + w));
+					continue;
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(oeste) && 
+						this.matrizGuia[j,i].getValue().Contains(sur)
+				  ){
+					this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + 16));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + w,(16 * i) + 1));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + w));
+					continue;
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(este) && 
+						this.matrizGuia[j,i].getValue().Contains(sur)
+				  ){
+					this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + 16));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + w,(16 * i) + 1));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + w));
+					continue;
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(oeste) && 
+						this.matrizGuia[j,i].getValue().Contains(norte)
+				  ){
+					this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + 1));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + w,(16 * i) + 16));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + w));
+					continue;
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(este) && 
+						this.matrizGuia[j,i].getValue().Contains(norte)
+				  ){
+					this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + 1));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + w,(16 * i) + 16));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + w));
+					continue;
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(norte) && 
+						this.matrizGuia[j,i].getValue().Contains(sur)
+				  ){
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + w));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + w));
+					continue;
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(oeste) && 
+						this.matrizGuia[j,i].getValue().Contains(este)
+				  ){
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + w,(16 * i) + 1));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + w,(16 * i) + 16));
+					continue;
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(oeste)){
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + w,(16 * i) + 1));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + w,(16 * i) + 16));
+					for(int w = 2; w <= 15; w++)this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + w));
+					continue;
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(sur)){
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + w));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + w));
+					for(int w = 2; w <= 15; w++)this.AddChild(new paredTesteo((16 * j) + w,(16 * i) + 1));
+					continue;
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(este)){
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + w,(16 * i) + 1));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + w,(16 * i) + 16));
+					for(int w = 2; w <= 15; w++)this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + w));
+					continue;
+				} 
+				if(this.matrizGuia[j,i].getValue().Contains(norte)){
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + 16,(16 * i) + w));
+					for(int w = 1; w <= 16; w++)this.AddChild(new paredTesteo((16 * j) + 1,(16 * i) + w));
+					for(int w = 2; w <= 15; w++)this.AddChild(new paredTesteo((16 * j) + w,(16 * i) + 16));
+					continue;
+				} 
+			}
+		}
+	}
 
 	private void imprimirMazmorra(){
 		String cadena = "";
@@ -566,7 +691,6 @@ public partial class Node2D : Godot.Node2D
 
 	public override void _Ready()
 	{
-		this.AddChild(new paredTesteo(16,16));
 		this.generarMatrizGuia();
 		this.generarMatrizReal();
 		this.generarMinimapa();
@@ -579,6 +703,22 @@ public partial class Node2D : Godot.Node2D
 	public override void _Input(InputEvent @event)
 	{
 		if (@event is InputEventKey keyEvent && keyEvent.Pressed){
+			if (keyEvent.Keycode == Key.W && keyEvent.Pressed){
+				Camera2D wea = this.GetNode("Camera2D") as Camera2D;
+				wea.Position = new Vector2(wea.Position.X, wea.Position.Y - 64);
+			}
+			if (keyEvent.Keycode == Key.A && keyEvent.Pressed){
+				Camera2D wea = this.GetNode("Camera2D") as Camera2D;
+				wea.Position = new Vector2(wea.Position.X - 64, wea.Position.Y);
+			}
+			if (keyEvent.Keycode == Key.S && keyEvent.Pressed){
+				Camera2D wea = this.GetNode("Camera2D") as Camera2D;
+				wea.Position = new Vector2(wea.Position.X, wea.Position.Y + 64);
+			}
+			if (keyEvent.Keycode == Key.D && keyEvent.Pressed){
+				Camera2D wea = this.GetNode("Camera2D") as Camera2D;
+				wea.Position = new Vector2(wea.Position.X + 64, wea.Position.Y);
+			}
 			if (keyEvent.Keycode == Key.T && keyEvent.Pressed){
 				for(int i = 0; i < dimension; i++){
 					for(int j = 0; j < dimension; j++){
@@ -587,8 +727,8 @@ public partial class Node2D : Godot.Node2D
 				}
 				this.RemoveAndFreeChildren(this);
 				this.generarMatrizGuia();
-                this.generarMatrizReal();
-                this.generarMinimapa();
+				this.generarMatrizReal();
+				this.generarMinimapa();
 			}
 		}
 	}

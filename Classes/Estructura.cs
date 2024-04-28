@@ -5,9 +5,9 @@ public partial class Estructura : Godot.Node2D
 {
 	private Sprite2D textura = new Sprite2D();
 		public void setPosition(int x, int y){
-			this.x = x;
-			this.y = y;
-			this.textura.Position = new Vector2(x, y);
+			this.x = x * 16;
+			this.y = y * 16;
+			this.textura.Position = new Vector2(x * 16, y * 16);
 		}
 		public void setTextura(String ruta){
 			this.textura.Texture = (Texture2D)GD.Load("res://Images/" + ruta );
